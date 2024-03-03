@@ -3,29 +3,28 @@ import { useState } from 'react';
 interface ApiResponse {
   // Define the structure of the API response data
 }
-const ufseGetWeather = () => {
-  return [5, () => {}];
-};
 
 const useGetWeather = (): {
   data: ApiResponse | null;
   isLoading: boolean;
   error: string | null;
-  fetchData: (lat: number, lon: number) => void;
+  fetchData: (index: number) => void;
 } => {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async (lat: number, lon: number) => {
+  const fetchData = async (index: number) => {
     setIsLoading(true);
+    console.log('asdf');
     try {
       // Simulate an API call
       // Replace this with your actual fetch logic
-
-      console.log('getting data w lat and lon:', lat, lon);
-      const response = await fetch('https://api.publicapis.org/entries');
+      //https://gutendex.com/books/84/
+      console.log('getting data w id:', index);
+      const response = await fetch(`https://gutendex.com/books/${index}/`);
       if (!response.ok) {
+        console.log('error');
         throw new Error('Network response was not ok');
       }
       const dataR = await response.json();
@@ -34,6 +33,7 @@ const useGetWeather = (): {
       setData(dataR);
       //setData(response as ApiResponse);
     } catch (error) {
+      console.log('errorrr');
       setError(error.message);
     } finally {
       setIsLoading(false);
