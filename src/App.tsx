@@ -3,17 +3,32 @@ import WeatherItem from './components/WeatherItem';
 import TempWeather from './components/TempWeather';
 import InputForm from './components/InputForm';
 import { useGetWeather } from './hooks/useGetWeather';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const { data, fetchData } = useGetWeather(0);
+  const { data, fetchData } = useGetWeather({});
   const [value, setValue] = useState(0);
-  //const [count, setCount] = useState<number>(0);
-  console.log('afsf', typeof setValue);
+  const [books, setBooks] = useState([]);
+  const [result, setResult] = useState([]);
+  //const [books, setBooks] = useState([]);
 
   const handleInput = () => {
     fetchData(value);
   };
+
+  useEffect(() => {
+    if (!data) return;
+    setBooks([...books, data]);
+  }, [data]);
+
+  const renderBooks = () => {
+    console.log(books);
+    if (books.length == 0) return;
+    return books.map((item) => {
+      return <div>{item.title}</div>;
+    });
+  };
+
   return (
     <div className="container">
       <div className="greeting">hello</div>
@@ -23,7 +38,8 @@ function App() {
         //<WeatherItem description={'aaa'} />
         //<TempWeather />
       }
-      <div>{data?.id}</div>
+      <div>list{renderBooks()}</div>
+
       <button
         onClick={() => {
           fetchData(84);
