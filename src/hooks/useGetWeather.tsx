@@ -3,7 +3,6 @@ import { useState } from 'react';
 interface ApiResponse {
   // Define the structure of the API response data
 }
-
 const useGetWeather = (): {
   data: ApiResponse | null;
   isLoading: boolean;
@@ -17,20 +16,22 @@ const useGetWeather = (): {
   const fetchData = async (index: number) => {
     setIsLoading(true);
     console.log('asdf');
-    try {
-      // Simulate an API call
-      // Replace this with your actual fetch logic
-      //https://gutendex.com/books/84/
-      console.log('getting data w id:', index);
-      const response = await fetch(`https://gutendex.com/books/${index}/`);
-      if (!response.ok) {
-        console.log('error');
-        throw new Error('Network response was not ok');
-      }
-      const dataR = await response.json();
-      console.log('success ', dataR);
+    const lat = 47;
+    const long = -109;
 
-      setData(dataR);
+    try {
+      await fetch(
+        `https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${long}&units=metric&APPID=856881d3aa78c79db32fa7a2d6d7750b`
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          console.log('get data ', result.main.temp); //humidity
+          console.log('get data ', result.weather[0].description); //humidity
+
+          setData(result);
+          //console.log(result);
+          //console.log(result[0].main[0]);
+        });
       //setData(response as ApiResponse);
     } catch (error) {
       console.log('errorrr');
