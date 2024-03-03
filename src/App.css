@@ -1,0 +1,18 @@
+.container {
+  border: 1px solid;
+  border-color:gainsboro;
+  border-radius: 5px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.greeting {
+
+}
+.wItem{
+  color:pink;
+  border: 1px solid;
+  border-color:gainsboro;
+  border-radius: 5px;
+}
