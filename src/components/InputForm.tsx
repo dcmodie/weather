@@ -1,29 +1,34 @@
 import { useState } from 'react';
 interface Props {
-  fetchData: (index: number) => Promise<Response>;
+  fetchData: (lat: number, lon: number) => Promise<Response>;
 }
 
 //React.Dispatch<React.SetStateAction<number>>;
 const InputForm: React.FC<Props> = ({ fetchData }) => {
-  const [inValue, setInValue] = useState(0);
+  const [lat, setLat] = useState(0);
+  const [lon, setLon] = useState(0);
   const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    fetchData(inValue);
+    fetchData(lat, lon);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="header-search">
-          <span className="visually-hidden"></span>
-        </label>
         <input
           type="text"
-          placeholder="Enter Index"
-          name="s"
-          value={inValue}
+          placeholder="Enter Lat"
+          value={lat}
           onChange={(e) => {
-            setInValue(e.target.value);
+            setLat(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Enter Lon"
+          value={lon}
+          onChange={(e) => {
+            setLon(e.target.value);
           }}
         />
         <button type="submit">Search</button>

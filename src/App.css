@@ -31,3 +31,16 @@
   padding:10px;
   text-align: center;
 }
+
+.closed-cell{
+  display: none;
+  height: 0px;
+}
+.open-cell{
+  height:50px;
+}
+.cell{
+  
+  width:300px;
+  background-color: azure;
+}

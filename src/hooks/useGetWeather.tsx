@@ -13,15 +13,15 @@ const useGetWeather = (): {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async (index: number) => {
+  const fetchData = async (lat: number, lon: number) => {
     setIsLoading(true);
-    console.log('asdf');
-    const lat = 47;
-    const long = -109;
+    console.log('f data ', lat, lon);
+    // const lat = 47;
+    // const long = -109;
 
     try {
       await fetch(
-        `https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${long}&units=metric&APPID=856881d3aa78c79db32fa7a2d6d7750b`
+        `https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${lon}&units=metric&APPID=856881d3aa78c79db32fa7a2d6d7750b`
       )
         .then((res) => res.json())
         .then((result) => {
