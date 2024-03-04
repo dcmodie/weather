@@ -1,6 +1,6 @@
 import { useState } from 'react';
 interface Props {
-  fetchData: (lat: number, lon: number) => Promise<Response>;
+  fetchData: (lat: number, lon: number) => Promise<void>;
 }
 
 //React.Dispatch<React.SetStateAction<number>>;

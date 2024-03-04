@@ -7,7 +7,7 @@ const useGetWeather = (): {
   data: ApiResponse | null;
   isLoading: boolean;
   error: string | null;
-  fetchData: (index: number) => void;
+  fetchData: (lat: number, lon: number) => Promise<void>;
 } => {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);

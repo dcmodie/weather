@@ -7,7 +7,7 @@ import { useGetWeather } from './hooks/useGetWeather';
 import { useState, useEffect } from 'react';
 import { CContent } from './components/Collapsible';
 function App() {
-  const { data, fetchData } = useGetWeather({});
+  const { data, fetchData } = useGetWeather();
   const [value, setValue] = useState(0);
   const [books, setBooks] = useState([]);
 
